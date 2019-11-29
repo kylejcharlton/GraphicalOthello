@@ -6,7 +6,6 @@ import javax.swing.SwingUtilities;
 
 /**
  * @author Kyle Charlton
- * <p>
  * A GUI based game of Othello using Swing
  */
 public class Othello

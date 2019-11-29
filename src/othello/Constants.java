@@ -15,4 +15,6 @@ public class Constants
     public static final int COLS = 8;
     public static final double PIECE_RATIO = 0.75;
     public static final Color BOARD_COLOR = new Color(39, 119, 20);
+    public static final int WHITE = 1;
+    public static final int BLACK = 2;
 }

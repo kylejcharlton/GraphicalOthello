@@ -57,5 +57,6 @@ public class Display implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        model.newGame();
     }
 }

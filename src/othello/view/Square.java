@@ -22,16 +22,25 @@ public class Square extends JPanel
         this.color = BOARD_COLOR;
     }
 
+    /**
+     * Returns the row of the Square
+     */
     public int getRow()
     {
         return row;
     }
 
+    /**
+     * Returns the column of the Square
+     */
     public int getCol()
     {
         return col;
     }
 
+    /**
+     * Sets the color of the game piece
+     */
     public void setColor(Color color)
     {
         this.color = color;
