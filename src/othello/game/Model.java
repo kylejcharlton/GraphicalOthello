@@ -1,4 +1,4 @@
-package othello;
+package othello.game;
 
 /**
  * @author Kyle Charlton

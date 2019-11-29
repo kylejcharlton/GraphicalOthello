@@ -1,5 +1,7 @@
 package othello;
 
+import othello.view.Display;
+
 import javax.swing.SwingUtilities;
 
 /**
