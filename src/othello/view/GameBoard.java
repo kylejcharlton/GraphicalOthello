@@ -53,7 +53,7 @@ public class GameBoard extends JPanel implements MouseListener
             } else if (occupant == BLACK)
             {
                 s.setColor(Color.BLACK);
-            } else if (occupant == POSSIBLE_MOVE)
+            } else if (occupant == VALID_MOVE)
             {
                 s.setColor(POSSIBLE_MOVE_COLOR);
             } else

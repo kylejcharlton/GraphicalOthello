@@ -8,30 +8,11 @@ import static othello.Constants.*;
  */
 public class ValidMove
 {
-    /**
-     * Calculates all valid moves from the model's current board, and modifies the model's board to show accordingly.
-     * If there is any possible direction that can be flipped according to Othello's rules, then the given row and
-     * column is a valid move.
-     */
-    public static void calculateValidMoves(Model model)
+
+
+    public static boolean checkValidMove(Model model, int row, int col)
     {
-        int[][] board = model.getBoard();
-        for (int i = 0; i < ROWS; i++)
-        {
-            for (int j = 0; j < COLS; j++)
-            {
-                if (board[i][j] != WHITE && board[i][j] != BLACK)
-                {
-                    if (checkHorizontal(model, i, j) || checkVertical(model, i, j) || checkDiagonal(model, i, j))
-                    {
-                        board[i][j] = POSSIBLE_MOVE;
-                    } else if (board[i][j] == POSSIBLE_MOVE)
-                    {
-                        board[i][j] = EMPTY;
-                    }
-                }
-            }
-        }
+        return checkHorizontal(model, row, col) || checkVertical(model, row, col) || checkDiagonal(model, row, col);
     }
 
     /**

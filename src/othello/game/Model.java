@@ -2,10 +2,11 @@ package othello.game;
 
 import static othello.Constants.*;
 import static othello.game.ValidMove.*;
+import static othello.game.MoveOperations.*;
 
 /**
  * @author Kyle Charlton
- * The model behind the classic game of Othello.
+ * The model behind the classic game Othello.
  */
 public class Model
 {
@@ -13,6 +14,9 @@ public class Model
     private int currentPlayer;
     private int otherPlayer;
 
+    /**
+     * Sets up a board of Othello and starts a new game.
+     */
     public Model()
     {
         if (ROWS % 2 == 1 || COLS % 2 == 1)
@@ -23,6 +27,9 @@ public class Model
         newGame();
     }
 
+    /**
+     * Starts a new game of Othello.
+     */
     public void newGame()
     {
         board = new int[ROWS][COLS];
@@ -37,98 +44,41 @@ public class Model
         calculateValidMoves(this);
     }
 
-    public int[][] getBoard()
-    {
-        return board;
-    }
-
+    /**
+     * Performs a move at a specified row and column if it is a valid move for the current player.
+     */
     public void moveTo(int row, int col)
     {
-        if (board[row][col] != 3)
+        if (board[row][col] != VALID_MOVE)
         {
             return;
         }
 
-        board[row][col] = currentPlayer;
-        flipHorizontal(row, col);
-        flipVertical(row, col);
-        flipDiagonal(row, col);
-
-        changeTurns();
+        performMove(this, row, col);
     }
 
-
-    private void flipDiagonal(int row, int col)
+    /**
+     * Calculates all valid moves from the model's current board, and modifies the model's board to show accordingly.
+     * If there is any possible direction that can be flipped according to Othello's rules, then the given row and
+     * column is a valid move.
+     */
+    private static void calculateValidMoves(Model model)
     {
-        if (board[row][col] != 3)
+        int[][] board = model.getBoard();
+        for (int i = 0; i < ROWS; i++)
         {
-            return;
-        }
-
-        // TODO: DO diagonal flipping in all four directions
-
-    }
-
-    private void flipVertical(int row, int col)
-    {
-        if (board[row][col] != 3)
-        {
-            return;
-        }
-
-        // Flip vertical going up
-        for (int i = 0; i < row; i++)
-        {
-            if (board[row - i][col] != currentPlayer)
+            for (int j = 0; j < COLS; j++)
             {
-                board[row - i][col] = currentPlayer;
-            } else
-            {
-                break;
-            }
-        }
-
-        // Flip vertical going down
-        for (int i = 0; i < ROWS - row; i++)
-        {
-            if (board[row + i][col] != currentPlayer)
-            {
-                board[row + i][col] = currentPlayer;
-            } else
-            {
-                break;
-            }
-        }
-    }
-
-    private void flipHorizontal(int row, int col)
-    {
-        if (board[row][col] != 3)
-        {
-            return;
-        }
-
-        // Flip horizontal going left
-        for (int i = 0; i < col; i++)
-        {
-            if (board[row][col - i] != currentPlayer)
-            {
-                board[row][col - i] = currentPlayer;
-            } else
-            {
-                break;
-            }
-        }
-
-        // Flip horizontal going right
-        for (int i = 0; i < COLS - col; i++)
-        {
-            if (board[row][col + i] != currentPlayer)
-            {
-                board[row][col + i] = currentPlayer;
-            } else
-            {
-                break;
+                if (board[i][j] != WHITE && board[i][j] != BLACK)
+                {
+                    if (checkValidMove(model, i, j))
+                    {
+                        board[i][j] = VALID_MOVE;
+                    } else if (board[i][j] == VALID_MOVE)
+                    {
+                        board[i][j] = EMPTY;
+                    }
+                }
             }
         }
     }
@@ -136,13 +86,21 @@ public class Model
     /**
      * Changes whose turn it currently is and other necessary operations when changing turns.
      */
-    private void changeTurns()
+    public void changeTurns()
     {
         int temp = currentPlayer;
         currentPlayer = otherPlayer;
         otherPlayer = temp;
 
         calculateValidMoves(this);
+    }
+
+    /**
+     * Returns the game board.
+     */
+    public int[][] getBoard()
+    {
+        return board;
     }
 
     /**
