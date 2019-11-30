@@ -1,39 +1,39 @@
 package othello.game;
 
-import static othello.Constants.*;
-
 /**
  * @author Kyle Charlton
  * A library that consists of methods to check where valid moves are in a game of Othello in a Model object.
  */
 public class ValidMove
 {
-
-
-    public static boolean checkValidMove(Model model, int row, int col)
+    /**
+     * Takes a model and returns if there is a valid move that can be made ar a given row and column.
+     */
+    public static boolean validMove(Model model, int row, int col)
     {
-        return checkHorizontal(model, row, col) || checkVertical(model, row, col) || checkDiagonal(model, row, col);
+        return validHorizontal(model, row, col) || validVertical(model, row, col) || validDiagonal(model, row, col);
     }
 
     /**
      * Takes a model and returns whether there is a valid diagonal move that can be made at a given row and column.
      */
-    public static boolean checkDiagonal(Model model, int row, int col)
+    public static boolean validDiagonal(Model model, int row, int col)
     {
-        return checkDiagonalNorthWest(model, row, col) || checkDiagonalNorthEast(model, row, col)
-                || checkDiagonalSouthWest(model, row, col) || checkDiagonalSouthEast(model, row, col);
+        return validDiagonalNorthWest(model, row, col) || validDiagonalNorthEast(model, row, col)
+                || validDiagonalSouthWest(model, row, col) || validDiagonalSouthEast(model, row, col);
     }
 
     /**
      * Takes a model and returns whether there is a valid diagonal move that can be made at a given row and column for
      * flipping pieces diagonally in the south-east direction.
      */
-    public static boolean checkDiagonalSouthEast(Model model, int row, int col)
+    public static boolean validDiagonalSouthEast(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
 
         int count = 0;
-        for (int i = 1; i < Math.min(ROWS - row, COLS - col); i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -47,6 +47,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -59,24 +60,26 @@ public class ValidMove
      * Takes a model and returns whether there is a valid diagonal move that can be made at a given row and column for
      * flipping pieces diagonally in the south-west direction.
      */
-    public static Boolean checkDiagonalSouthWest(Model model, int row, int col)
+    public static Boolean validDiagonalSouthWest(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < Math.min(row, COLS - col); i++)
+        int i = 1;
+        while (true)
         {
             try
             {
-                if (board[row - i][col + i] == model.getOtherPlayer())
+                if (board[row + i][col - i] == model.getOtherPlayer())
                 {
                     count++;
-                } else if (board[row - i][col + i] == model.getCurrentPlayer() && count > 0)
+                } else if (board[row + i][col - i] == model.getCurrentPlayer() && count > 0)
                 {
                     return true;
                 } else
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -90,11 +93,12 @@ public class ValidMove
      * Takes a model and returns whether there is a valid diagonal move that can be made at a given row and column for
      * flipping pieces diagonally in the north-east direction.
      */
-    public static Boolean checkDiagonalNorthEast(Model model, int row, int col)
+    public static Boolean validDiagonalNorthEast(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < Math.min(ROWS - row, col); i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -108,6 +112,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -120,11 +125,12 @@ public class ValidMove
      * Takes a model and returns whether there is a valid diagonal move that can be made at a given row and column for
      * flipping pieces diagonally in the north-west direction.
      */
-    public static Boolean checkDiagonalNorthWest(Model model, int row, int col)
+    public static Boolean validDiagonalNorthWest(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < Math.min(row, col); i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -138,6 +144,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -150,20 +157,21 @@ public class ValidMove
     /**
      * Takes a model and returns whether there is a valid vertical move that can be made at a given row and column.
      */
-    public static boolean checkVertical(Model model, int row, int col)
+    public static boolean validVertical(Model model, int row, int col)
     {
-        return checkVerticalNorth(model, row, col) || checkVerticalSouth(model, row, col);
+        return validVerticalNorth(model, row, col) || validVerticalSouth(model, row, col);
     }
 
     /**
      * Takes a model and returns whether there is a valid vertical move that can be made at a given row and column for
      * flipping pieces in the south direction.
      */
-    public static Boolean checkVerticalSouth(Model model, int row, int col)
+    public static Boolean validVerticalSouth(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < ROWS - row; i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -177,6 +185,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -189,11 +198,12 @@ public class ValidMove
      * Takes a model and returns whether there is a valid vertical move that can be made at a given row and column for
      * flipping pieces in the north direction.
      */
-    public static Boolean checkVerticalNorth(Model model, int row, int col)
+    public static Boolean validVerticalNorth(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < row; i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -207,6 +217,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -218,20 +229,21 @@ public class ValidMove
     /**
      * Takes a model and returns whether there is a valid horizontal move that can be made at a given row and column.
      */
-    public static boolean checkHorizontal(Model model, int row, int col)
+    public static boolean validHorizontal(Model model, int row, int col)
     {
-        return checkHorizontalWest(model, row, col) || checkHorizontalEast(model, row, col);
+        return validHorizontalWest(model, row, col) || validHorizontalEast(model, row, col);
     }
 
     /**
      * Takes a model and returns whether there is a valid horizontal move that can be made at a given row and column for
      * flipping pieces in the east direction.
      */
-    public static boolean checkHorizontalEast(Model model, int row, int col)
+    public static boolean validHorizontalEast(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < ROWS - row; i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -245,6 +257,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;
@@ -257,11 +270,12 @@ public class ValidMove
      * Takes a model and returns whether there is a valid horizontal move that can be made at a given row and column for
      * flipping pieces in the west direction.
      */
-    public static Boolean checkHorizontalWest(Model model, int row, int col)
+    public static Boolean validHorizontalWest(Model model, int row, int col)
     {
         int[][] board = model.getBoard();
         int count = 0;
-        for (int i = 1; i < row; i++)
+        int i = 1;
+        while (true)
         {
             try
             {
@@ -275,6 +289,7 @@ public class ValidMove
                 {
                     break;
                 }
+                i++;
             } catch (IndexOutOfBoundsException e)
             {
                 break;

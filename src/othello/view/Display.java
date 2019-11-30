@@ -58,5 +58,6 @@ public class Display implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         model.newGame();
+        board.refresh();
     }
 }

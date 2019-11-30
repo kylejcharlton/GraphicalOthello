@@ -71,7 +71,7 @@ public class Model
             {
                 if (board[i][j] != WHITE && board[i][j] != BLACK)
                 {
-                    if (checkValidMove(model, i, j))
+                    if (validMove(model, i, j))
                     {
                         board[i][j] = VALID_MOVE;
                     } else if (board[i][j] == VALID_MOVE)
