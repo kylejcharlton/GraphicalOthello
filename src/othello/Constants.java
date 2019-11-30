@@ -15,6 +15,9 @@ public class Constants
     public static final int COLS = 8;
     public static final double PIECE_RATIO = 0.75;
     public static final Color BOARD_COLOR = new Color(39, 119, 20);
+    public static final Color POSSIBLE_MOVE_COLOR = new Color(255, 255, 0, 125);
+    public static final int EMPTY = 0;
     public static final int WHITE = 1;
     public static final int BLACK = 2;
+    public static final int POSSIBLE_MOVE = 3;
 }

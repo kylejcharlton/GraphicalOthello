@@ -45,14 +45,17 @@ public class GameBoard extends JPanel implements MouseListener
         for (Component c : squares)
         {
             Square s = (Square) c;
-            int currentColor = board[s.getRow()][s.getCol()];
+            int occupant = board[s.getRow()][s.getCol()];
 
-            if (currentColor == WHITE)
+            if (occupant == WHITE)
             {
                 s.setColor(Color.WHITE);
-            } else if (currentColor == BLACK)
+            } else if (occupant == BLACK)
             {
                 s.setColor(Color.BLACK);
+            } else if (occupant == POSSIBLE_MOVE)
+            {
+                s.setColor(POSSIBLE_MOVE_COLOR);
             } else
             {
                 s.setColor(BOARD_COLOR);
@@ -66,6 +69,7 @@ public class GameBoard extends JPanel implements MouseListener
     public void mouseClicked(MouseEvent e)
     {
         Square s = (Square) e.getSource();
+        model.moveTo(s.getRow(), s.getCol());
         refresh();
     }
 
