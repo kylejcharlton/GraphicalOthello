@@ -18,7 +18,7 @@ public class GameBoard extends JPanel implements MouseListener
     Model model;
     Display display;
 
-    public GameBoard(Model model, Display display)
+    public GameBoard (Model model, Display display)
     {
         this.model = model;
         this.display = display;
@@ -37,7 +37,7 @@ public class GameBoard extends JPanel implements MouseListener
         }
     }
 
-    public void refresh()
+    public void refresh ()
     {
         int[][] board = model.getBoard();
 
@@ -50,13 +50,16 @@ public class GameBoard extends JPanel implements MouseListener
             if (occupant == WHITE)
             {
                 s.setColor(Color.WHITE);
-            } else if (occupant == BLACK)
+            }
+            else if (occupant == BLACK)
             {
                 s.setColor(Color.BLACK);
-            } else if (occupant == VALID_MOVE)
+            }
+            else if (occupant == VALID_MOVE)
             {
                 s.setColor(POSSIBLE_MOVE_COLOR);
-            } else
+            }
+            else
             {
                 s.setColor(BOARD_COLOR);
             }
@@ -66,7 +69,7 @@ public class GameBoard extends JPanel implements MouseListener
     }
 
     @Override
-    public void mouseClicked(MouseEvent e)
+    public void mouseClicked (MouseEvent e)
     {
         Square s = (Square) e.getSource();
         model.moveTo(s.getRow(), s.getCol());
@@ -74,22 +77,22 @@ public class GameBoard extends JPanel implements MouseListener
     }
 
     @Override
-    public void mousePressed(MouseEvent e)
+    public void mousePressed (MouseEvent e)
     {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e)
+    public void mouseReleased (MouseEvent e)
     {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e)
+    public void mouseEntered (MouseEvent e)
     {
     }
 
     @Override
-    public void mouseExited(MouseEvent e)
+    public void mouseExited (MouseEvent e)
     {
     }
 }

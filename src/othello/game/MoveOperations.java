@@ -8,7 +8,7 @@ import static othello.game.ValidMove.*;
  */
 public class MoveOperations
 {
-    public static void performMove(Model model, int row, int col)
+    public static void performMove (Model model, int row, int col)
     {
         if (!validMove(model, row, col))
         {
@@ -24,7 +24,7 @@ public class MoveOperations
         model.changeTurns();
     }
 
-    private static void flipDiagonal(Model model, int row, int col)
+    private static void flipDiagonal (Model model, int row, int col)
     {
         flipDiagonalNorthWest(model, row, col);
         flipDiagonalNorthEast(model, row, col);
@@ -32,7 +32,7 @@ public class MoveOperations
         flipDiagonalSouthEast(model, row, col);
     }
 
-    private static void flipDiagonalSouthEast(Model model, int row, int col)
+    private static void flipDiagonalSouthEast (Model model, int row, int col)
     {
         if (!validDiagonalSouthEast(model, row, col))
         {
@@ -52,19 +52,21 @@ public class MoveOperations
                 if (board[tempRow][tempCol] == model.getOtherPlayer())
                 {
                     board[tempRow][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipDiagonalSouthWest(Model model, int row, int col)
+    private static void flipDiagonalSouthWest (Model model, int row, int col)
     {
         if (!validDiagonalSouthWest(model, row, col))
         {
@@ -84,19 +86,21 @@ public class MoveOperations
                 if (board[tempRow][tempCol] == model.getOtherPlayer())
                 {
                     board[tempRow][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipDiagonalNorthEast(Model model, int row, int col)
+    private static void flipDiagonalNorthEast (Model model, int row, int col)
     {
         if (!validDiagonalNorthEast(model, row, col))
         {
@@ -116,19 +120,21 @@ public class MoveOperations
                 if (board[tempRow][tempCol] == model.getOtherPlayer())
                 {
                     board[tempRow][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipDiagonalNorthWest(Model model, int row, int col)
+    private static void flipDiagonalNorthWest (Model model, int row, int col)
     {
         if (!validDiagonalNorthWest(model, row, col))
         {
@@ -148,25 +154,27 @@ public class MoveOperations
                 if (board[tempRow][tempCol] == model.getOtherPlayer())
                 {
                     board[tempRow][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipVertical(Model model, int row, int col)
+    private static void flipVertical (Model model, int row, int col)
     {
         flipVerticalNorth(model, row, col);
         flipVerticalSouth(model, row, col);
     }
 
-    private static void flipVerticalSouth(Model model, int row, int col)
+    private static void flipVerticalSouth (Model model, int row, int col)
     {
         if (!validVerticalSouth(model, row, col))
         {
@@ -185,19 +193,21 @@ public class MoveOperations
                 if (board[tempRow][col] == model.getOtherPlayer())
                 {
                     board[tempRow][col] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipVerticalNorth(Model model, int row, int col)
+    private static void flipVerticalNorth (Model model, int row, int col)
     {
         if (!validVerticalNorth(model, row, col))
         {
@@ -216,25 +226,27 @@ public class MoveOperations
                 if (board[tempRow][col] == model.getOtherPlayer())
                 {
                     board[tempRow][col] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipHorizontal(Model model, int row, int col)
+    private static void flipHorizontal (Model model, int row, int col)
     {
         flipHorizontalEast(model, row, col);
         flipHorizontalWest(model, row, col);
     }
 
-    private static void flipHorizontalWest(Model model, int row, int col)
+    private static void flipHorizontalWest (Model model, int row, int col)
     {
         if (!validHorizontalWest(model, row, col))
         {
@@ -253,19 +265,21 @@ public class MoveOperations
                 if (board[row][tempCol] == model.getOtherPlayer())
                 {
                     board[row][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }
         }
     }
 
-    private static void flipHorizontalEast(Model model, int row, int col)
+    private static void flipHorizontalEast (Model model, int row, int col)
     {
         if (!validHorizontalEast(model, row, col))
         {
@@ -284,12 +298,14 @@ public class MoveOperations
                 if (board[row][tempCol] == model.getOtherPlayer())
                 {
                     board[row][tempCol] = model.getCurrentPlayer();
-                } else
+                }
+                else
                 {
                     break;
                 }
                 i++;
-            } catch (IndexOutOfBoundsException e)
+            }
+            catch (IndexOutOfBoundsException e)
             {
                 break;
             }

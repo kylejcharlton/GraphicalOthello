@@ -18,7 +18,7 @@ public class Display implements ActionListener
     Model model;
     GameBoard board;
 
-    public Display()
+    public Display ()
     {
         JFrame frame = new JFrame();
         frame.setTitle("Othello");
@@ -36,14 +36,17 @@ public class Display implements ActionListener
 
         // The top portion contains the scores
         JPanel scores = new JPanel();
+        scores.setBackground(Color.CYAN);
         root.add(scores, "North");
 
         // Score and indicator for the first player
         JPanel p1 = new JPanel();
         scores.add(p1, "West");
+        p1.add(new ScorePanel("White", Color.WHITE));
 
         JPanel p2 = new JPanel();
         scores.add(p2, "East");
+        p2.add(new ScorePanel("Black", Color.BLACK));
 
         // The bottom portion contains the New Game button
         JButton newGame = new JButton("New Game");
@@ -55,7 +58,7 @@ public class Display implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
+    public void actionPerformed (ActionEvent e)
     {
         model.newGame();
         board.refresh();

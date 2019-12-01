@@ -15,7 +15,7 @@ public class Square extends JPanel
     private int col;
     private Color color;
 
-    public Square(int row, int col)
+    public Square (int row, int col)
     {
         this.row = row;
         this.col = col;
@@ -25,7 +25,7 @@ public class Square extends JPanel
     /**
      * Returns the row of the Square
      */
-    public int getRow()
+    public int getRow ()
     {
         return row;
     }
@@ -33,7 +33,7 @@ public class Square extends JPanel
     /**
      * Returns the column of the Square
      */
-    public int getCol()
+    public int getCol ()
     {
         return col;
     }
@@ -41,14 +41,14 @@ public class Square extends JPanel
     /**
      * Sets the color of the game piece
      */
-    public void setColor(Color color)
+    public void setColor (Color color)
     {
         this.color = color;
         repaint();
     }
 
     @Override
-    public void paintComponent(Graphics g)
+    public void paintComponent (Graphics g)
     {
         ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(BOARD_COLOR);

@@ -2,7 +2,7 @@ package othello;
 
 import othello.view.Display;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /**
  * @author Kyle Charlton
@@ -10,7 +10,7 @@ import javax.swing.SwingUtilities;
  */
 public class Othello
 {
-    public static void main(String[] args)
+    public static void main (String[] args)
     {
         SwingUtilities.invokeLater(() -> new Display());
     }
