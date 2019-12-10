@@ -65,6 +65,9 @@ public class GameBoard extends JPanel implements MouseListener
             }
         }
 
+        display.setWhiteCount(model.getTotalWhite());
+        display.setBlackCount(model.getTotalBlack());
+
         repaint();
     }
 

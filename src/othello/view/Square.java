@@ -7,7 +7,7 @@ import static othello.Constants.*;
 
 /**
  * @author Kyle Charlton
- * Each individual square that displays a game piece.
+ * A JPanel where each individual square that displays a game piece.
  */
 public class Square extends JPanel
 {

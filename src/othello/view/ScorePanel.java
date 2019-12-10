@@ -1,25 +1,23 @@
 package othello.view;
 
+import othello.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 
 import static othello.Constants.*;
 
+/**
+ * @author Kyle Charlton
+ * A JPanel to display a player's score information.
+ */
 public class ScorePanel extends JPanel
 {
     private Color color;
-    private String text;
 
-    public ScorePanel (String s, Color color)
+    public ScorePanel (Color color)
     {
-        text = s;
         this.color = color;
-    }
-
-    public void setText (String s)
-    {
-        this.text = s;
-        repaint();
     }
 
     public void setColor (Color color)
@@ -32,9 +30,7 @@ public class ScorePanel extends JPanel
     public void paintComponent (Graphics g)
     {
         ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setColor(BOARD_COLOR);
-        g.fillRect(0, 0, 10, getHeight());
         g.setColor(color);
-        g.fillOval(0, 0, 10, getHeight());
+        g.fillOval(0, 0, 30, 30);
     }
 }

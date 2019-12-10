@@ -24,6 +24,7 @@ public class MoveOperations
         model.changeTurns();
     }
 
+
     private static void flipDiagonal (Model model, int row, int col)
     {
         flipDiagonalNorthWest(model, row, col);
