@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GraphicalOthello:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GraphicalOthello_jar</output-path>
+    <root id="archive" name="GraphicalOthello.jar">
+      <element id="module-output" name="GraphicalOthello" />
+      <element id="library" level="project" name="GraphicalOthello" />
+    </root>
+  </artifact>
+</component>
