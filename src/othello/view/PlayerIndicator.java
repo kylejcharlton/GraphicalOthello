@@ -9,12 +9,16 @@ import static othello.Constants.*;
 
 /**
  * @author Kyle Charlton
- * A JPanel to display a player's score information.
+ * A JPanel to display an indicator of whose turn it is.
  */
 public class PlayerIndicator extends JPanel
 {
+    /**
+     * The color of this indicator
+     */
     private Color color;
 
+    /** Create a new player indicator of a specified color */
     public PlayerIndicator (Color color)
     {
         this.color = color;
@@ -22,12 +26,14 @@ public class PlayerIndicator extends JPanel
         setPreferredSize(new Dimension(30, 30));
     }
 
+    /** Sets the color of this indicator */
     public void setColor (Color color)
     {
         this.color = color;
         repaint();
     }
 
+    /** Draws what the indicator looks like */
     @Override
     public void paintComponent (Graphics g)
     {

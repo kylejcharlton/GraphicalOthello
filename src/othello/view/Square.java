@@ -15,6 +15,9 @@ public class Square extends JPanel
     private int col;
     private Color color;
 
+    /**
+     * Creates a square containing what row and column it belongs to.
+     */
     public Square (int row, int col)
     {
         this.row = row;
@@ -47,6 +50,9 @@ public class Square extends JPanel
         repaint();
     }
 
+    /**
+     * Draws what this square looks like.
+     */
     @Override
     public void paintComponent (Graphics g)
     {

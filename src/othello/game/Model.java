@@ -95,6 +95,7 @@ public class Model
 
         if (noValidMoves())
         {
+            // Change back to original player in case they still have a valid move
             changePlayer();
 
             if (noValidMoves())
@@ -115,11 +116,11 @@ public class Model
     }
 
     /**
-     * Returns the game board.
+     * Returns a copy of the game board.
      */
     public int[][] getBoard ()
     {
-        return board.clone();
+        return board;
     }
 
     /**

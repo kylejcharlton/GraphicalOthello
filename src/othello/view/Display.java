@@ -15,12 +15,35 @@ import static othello.Constants.*;
  */
 public class Display implements ActionListener
 {
+    /**
+     * The representation of Othello
+     */
     Model model;
+
+    /**
+     * A JPanel that displays the representation contained in the Model
+     */
     GameBoard board;
+
+    /**
+     * Displays the current score for White
+     */
     JLabel whiteScore;
+
+    /**
+     * Displays the current score for Black
+     */
     JLabel blackScore;
-    PlayerIndicator p1Indicator;
-    PlayerIndicator p2Indicator;
+
+    /**
+     * An indicator that shows if it is White's turn
+     */
+    PlayerIndicator whiteIndicator;
+
+    /**
+     * An indicator that shows if it is Black's turn
+     */
+    PlayerIndicator blackIndicator;
 
     public Display ()
     {
@@ -52,15 +75,15 @@ public class Display implements ActionListener
         whiteScore.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
         whiteScore.setForeground(Color.WHITE);
         whiteInfo.add(whiteScore);
-        p1Indicator = new PlayerIndicator(Color.WHITE);
-        whiteInfo.add(p1Indicator);
+        whiteIndicator = new PlayerIndicator(Color.WHITE);
+        whiteInfo.add(whiteIndicator);
 
         // Score and indicator for the second player
         JPanel blackInfo = new JPanel();
         blackInfo.setBackground(BACKGROUND_COLOR);
         scores.add(blackInfo, "East");
-        p2Indicator = new PlayerIndicator(Color.BLACK);
-        blackInfo.add(p2Indicator);
+        blackIndicator = new PlayerIndicator(Color.BLACK);
+        blackInfo.add(blackIndicator);
         blackScore = new JLabel("" + model.getTotalBlack());
         blackScore.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
         blackScore.setForeground(Color.BLACK);
@@ -72,10 +95,14 @@ public class Display implements ActionListener
         root.add(newGame, "South");
         newGame.addActionListener(this);
 
+        // The game is now ready to be displayed
         board.refresh();
         frame.setVisible(true);
     }
 
+    /**
+     * Gets called whenever an ActionEvent occurs.
+     */
     @Override
     public void actionPerformed (ActionEvent e)
     {
@@ -105,8 +132,8 @@ public class Display implements ActionListener
      */
     public void setWhiteIndicator ()
     {
-        p1Indicator.setColor(Color.WHITE);
-        p2Indicator.setColor(BACKGROUND_COLOR);
+        whiteIndicator.setColor(Color.WHITE);
+        blackIndicator.setColor(BACKGROUND_COLOR);
     }
 
     /**
@@ -114,7 +141,7 @@ public class Display implements ActionListener
      */
     public void setBlackIndicator ()
     {
-        p2Indicator.setColor(Color.BLACK);
-        p1Indicator.setColor(BACKGROUND_COLOR);
+        blackIndicator.setColor(Color.BLACK);
+        whiteIndicator.setColor(BACKGROUND_COLOR);
     }
 }

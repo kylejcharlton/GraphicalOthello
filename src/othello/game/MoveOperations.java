@@ -8,6 +8,9 @@ import static othello.game.ValidMove.*;
  */
 public class MoveOperations
 {
+    /**
+     * Performs a move at an indicated row and column if it is a valid move. Returns true if a move was made.
+     */
     public static boolean performMove (Model model, int row, int col)
     {
         if (!validMove(model, row, col))
@@ -25,7 +28,9 @@ public class MoveOperations
         return true;
     }
 
-
+    /**
+     * Flips diagonally for each direction that would be a valid move.
+     */
     private static void flipDiagonal (Model model, int row, int col)
     {
         flipDiagonalNorthWest(model, row, col);
@@ -34,6 +39,9 @@ public class MoveOperations
         flipDiagonalSouthEast(model, row, col);
     }
 
+    /**
+     * Flips diagonally south-east if it would be a valid move.
+     */
     private static void flipDiagonalSouthEast (Model model, int row, int col)
     {
         if (!validDiagonalSouthEast(model, row, col))
@@ -68,6 +76,9 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips diagonally south-west if it would be a valid move.
+     */
     private static void flipDiagonalSouthWest (Model model, int row, int col)
     {
         if (!validDiagonalSouthWest(model, row, col))
@@ -102,6 +113,9 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips diagonally north-east if it would be a valid move.
+     */
     private static void flipDiagonalNorthEast (Model model, int row, int col)
     {
         if (!validDiagonalNorthEast(model, row, col))
@@ -136,6 +150,9 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips diagonally north-west if it would be a valid move.
+     */
     private static void flipDiagonalNorthWest (Model model, int row, int col)
     {
         if (!validDiagonalNorthWest(model, row, col))
@@ -170,12 +187,18 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips vertically for each direction that would be a valid move.
+     */
     private static void flipVertical (Model model, int row, int col)
     {
         flipVerticalNorth(model, row, col);
         flipVerticalSouth(model, row, col);
     }
 
+    /**
+     * Flips vertically south if it would be a valid move.
+     */
     private static void flipVerticalSouth (Model model, int row, int col)
     {
         if (!validVerticalSouth(model, row, col))
@@ -209,6 +232,9 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips vertically north if it would be a valid move.
+     */
     private static void flipVerticalNorth (Model model, int row, int col)
     {
         if (!validVerticalNorth(model, row, col))
@@ -242,12 +268,18 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips horizontally for each direction that would be a valid move.
+     */
     private static void flipHorizontal (Model model, int row, int col)
     {
         flipHorizontalEast(model, row, col);
         flipHorizontalWest(model, row, col);
     }
 
+    /**
+     * Flips horizontally west if it would be a valid move.
+     */
     private static void flipHorizontalWest (Model model, int row, int col)
     {
         if (!validHorizontalWest(model, row, col))
@@ -281,6 +313,9 @@ public class MoveOperations
         }
     }
 
+    /**
+     * Flips horizontally east if it would be a valid move.
+     */
     private static void flipHorizontalEast (Model model, int row, int col)
     {
         if (!validHorizontalEast(model, row, col))
