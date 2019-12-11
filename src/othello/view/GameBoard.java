@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 import static othello.Constants.*;
 
@@ -47,6 +48,7 @@ public class GameBoard extends JPanel implements MouseListener
             Square s = (Square) c;
             int occupant = board[s.getRow()][s.getCol()];
 
+            // Color each space according to what the model says
             if (occupant == WHITE)
             {
                 s.setColor(Color.WHITE);
@@ -65,8 +67,19 @@ public class GameBoard extends JPanel implements MouseListener
             }
         }
 
+        // Update player piece count
         display.setWhiteCount(model.getTotalWhite());
         display.setBlackCount(model.getTotalBlack());
+
+        // Display whose turn it is
+        if (model.getCurrentPlayer() == WHITE)
+        {
+            display.setWhiteIndicator();
+        }
+        else
+        {
+            display.setBlackIndicator();
+        }
 
         repaint();
     }
@@ -74,28 +87,72 @@ public class GameBoard extends JPanel implements MouseListener
     @Override
     public void mouseClicked (MouseEvent e)
     {
-        Square s = (Square) e.getSource();
-        model.moveTo(s.getRow(), s.getCol());
-        refresh();
+        // Allow moves to be made if the game isn't over yet
+        if (!model.isGameOver())
+        {
+            Square s = (Square) e.getSource();
+
+            // Remember whose turn it was before a move is made
+            int previousTurn = model.getCurrentPlayer();
+
+            boolean movePerformed = model.moveTo(s.getRow(), s.getCol());
+            refresh();
+
+            // Display a dialog if the game is over stating who won
+            if (model.isGameOver())
+            {
+                if (model.getTotalWhite() > model.getTotalBlack())
+                {
+                    JOptionPane.showMessageDialog(this, "White wins!");
+                }
+                else if (model.getTotalBlack() > model.getTotalWhite())
+                {
+                    JOptionPane.showMessageDialog(this, "Black wins!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "It's a tie!");
+                }
+            }
+            else
+            {
+                // Notify the players if it is the previous player's turn again
+                if (previousTurn == model.getCurrentPlayer() && movePerformed)
+                {
+                    if (model.getCurrentPlayer() == WHITE)
+                    {
+                        JOptionPane.showMessageDialog(this, "Black had no valid moves. It is white's turn again.");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "White had no valid moves. It is black's turn again.");
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void mousePressed (MouseEvent e)
     {
+        // Deliberately ignoring
     }
 
     @Override
     public void mouseReleased (MouseEvent e)
     {
+        // Deliberately ignoring
     }
 
     @Override
     public void mouseEntered (MouseEvent e)
     {
+        // Deliberately ignoring
     }
 
     @Override
     public void mouseExited (MouseEvent e)
     {
+        // Deliberately ignoring
     }
 }

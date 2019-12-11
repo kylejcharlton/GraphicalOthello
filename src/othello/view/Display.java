@@ -19,6 +19,8 @@ public class Display implements ActionListener
     GameBoard board;
     JLabel whiteScore;
     JLabel blackScore;
+    PlayerIndicator p1Indicator;
+    PlayerIndicator p2Indicator;
 
     public Display ()
     {
@@ -39,27 +41,30 @@ public class Display implements ActionListener
         // The top portion contains the scores
         JPanel scores = new JPanel();
         root.add(scores, "North");
-        scores.setBackground(Color.LIGHT_GRAY);
+        scores.setBackground(BACKGROUND_COLOR);
+        scores.setPreferredSize(new Dimension(root.getWidth(), 46));
 
         // Score and indicator for the first player
-        JPanel p1 = new JPanel();
-        p1.setBackground(Color.LIGHT_GRAY);
-        scores.add(p1, "West");
+        JPanel whiteInfo = new JPanel();
+        whiteInfo.setBackground(BACKGROUND_COLOR);
+        scores.add(whiteInfo, "West");
         whiteScore = new JLabel("" + model.getTotalWhite());
         whiteScore.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
         whiteScore.setForeground(Color.WHITE);
-        p1.add(whiteScore);
-        p1.add(new ScorePanel(Color.WHITE));
+        whiteInfo.add(whiteScore);
+        p1Indicator = new PlayerIndicator(Color.WHITE);
+        whiteInfo.add(p1Indicator);
 
         // Score and indicator for the second player
-        JPanel p2 = new JPanel();
-        p2.setBackground(Color.LIGHT_GRAY);
-        scores.add(p2, "East");
-        p2.add(new ScorePanel(Color.BLACK));
+        JPanel blackInfo = new JPanel();
+        blackInfo.setBackground(BACKGROUND_COLOR);
+        scores.add(blackInfo, "East");
+        p2Indicator = new PlayerIndicator(Color.BLACK);
+        blackInfo.add(p2Indicator);
         blackScore = new JLabel("" + model.getTotalBlack());
         blackScore.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
         blackScore.setForeground(Color.BLACK);
-        p2.add(blackScore);
+        blackInfo.add(blackScore);
 
         // The bottom portion contains the New Game button
         JButton newGame = new JButton("New Game");
@@ -74,6 +79,7 @@ public class Display implements ActionListener
     @Override
     public void actionPerformed (ActionEvent e)
     {
+        // Start a new game if the new game button is pressed
         model.newGame();
         board.refresh();
     }
@@ -92,5 +98,23 @@ public class Display implements ActionListener
     public void setBlackCount (int num)
     {
         blackScore.setText("" + num);
+    }
+
+    /**
+     * Changes the player indicator to show it is White's turn
+     */
+    public void setWhiteIndicator ()
+    {
+        p1Indicator.setColor(Color.WHITE);
+        p2Indicator.setColor(BACKGROUND_COLOR);
+    }
+
+    /**
+     * Changes the player indicator to show it is Black's turn
+     */
+    public void setBlackIndicator ()
+    {
+        p2Indicator.setColor(Color.BLACK);
+        p1Indicator.setColor(BACKGROUND_COLOR);
     }
 }

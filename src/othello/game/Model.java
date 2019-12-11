@@ -13,6 +13,7 @@ public class Model
     private int[][] board;
     private int currentPlayer;
     private int otherPlayer;
+    private boolean gameOver;
 
     /**
      * Sets up a board of Othello and starts a new game.
@@ -25,6 +26,24 @@ public class Model
         }
 
         newGame();
+    }
+
+    /**
+     * Starts a new game of Othello.
+     */
+    public void newGame ()
+    {
+        board = new int[ROWS][COLS];
+        board[(ROWS / 2) - 1][(COLS / 2) - 1] = WHITE;
+        board[ROWS / 2][COLS / 2] = WHITE;
+        board[(ROWS / 2) - 1][COLS / 2] = BLACK;
+        board[ROWS / 2][(COLS / 2) - 1] = BLACK;
+
+        currentPlayer = WHITE;
+        otherPlayer = BLACK;
+        gameOver = false;
+
+        calculateValidMoves(this);
     }
 
     /**
@@ -55,33 +74,16 @@ public class Model
     }
 
     /**
-     * Starts a new game of Othello.
-     */
-    public void newGame ()
-    {
-        board = new int[ROWS][COLS];
-        board[(ROWS / 2) - 1][(COLS / 2) - 1] = WHITE;
-        board[ROWS / 2][COLS / 2] = WHITE;
-        board[(ROWS / 2) - 1][COLS / 2] = BLACK;
-        board[ROWS / 2][(COLS / 2) - 1] = BLACK;
-
-        currentPlayer = WHITE;
-        otherPlayer = BLACK;
-
-        calculateValidMoves(this);
-    }
-
-    /**
      * Performs a move at a specified row and column if it is a valid move for the current player.
      */
-    public void moveTo (int row, int col)
+    public boolean moveTo (int row, int col)
     {
         if (board[row][col] != VALID_MOVE)
         {
-            return;
+            return false;
         }
 
-        performMove(this, row, col);
+        return performMove(this, row, col);
     }
 
     /**
@@ -97,11 +99,14 @@ public class Model
 
             if (noValidMoves())
             {
-                // TODO: GAME OVER
+                gameOver = true;
             }
         }
     }
 
+    /**
+     * Changes whose turn it currently is.
+     */
     public void changePlayer ()
     {
         int temp = currentPlayer;
@@ -114,7 +119,7 @@ public class Model
      */
     public int[][] getBoard ()
     {
-        return board;
+        return board.clone();
     }
 
     /**
@@ -190,5 +195,13 @@ public class Model
             }
         }
         return true;
+    }
+
+    /**
+     * Returns if the game is over.
+     */
+    public boolean isGameOver ()
+    {
+        return gameOver;
     }
 }

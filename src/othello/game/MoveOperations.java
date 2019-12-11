@@ -8,11 +8,11 @@ import static othello.game.ValidMove.*;
  */
 public class MoveOperations
 {
-    public static void performMove (Model model, int row, int col)
+    public static boolean performMove (Model model, int row, int col)
     {
         if (!validMove(model, row, col))
         {
-            return;
+            return false;
         }
 
         int[][] board = model.getBoard();
@@ -22,6 +22,7 @@ public class MoveOperations
         flipVertical(model, row, col);
         flipHorizontal(model, row, col);
         model.changeTurns();
+        return true;
     }
 
 

@@ -1,5 +1,7 @@
 package othello.game;
 
+import static othello.Constants.*;
+
 /**
  * @author Kyle Charlton
  * A library that consists of methods to check where valid moves are in a game of Othello in a Model object.
@@ -11,6 +13,11 @@ public class ValidMove
      */
     public static boolean validMove (Model model, int row, int col)
     {
+        if (model.getBoard()[row][col] == WHITE || model.getBoard()[row][col] == BLACK)
+        {
+            return false;
+        }
+
         return validHorizontal(model, row, col) || validVertical(model, row, col) || validDiagonal(model, row, col);
     }
 
